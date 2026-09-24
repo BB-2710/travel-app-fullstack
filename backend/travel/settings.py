@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure--c8d683!k863@7j&-elw!e6-ows%7qwz8y8l%+x)l%&%)#3uhl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -86,10 +87,10 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "travel_app",
-        'USER': "root",
-        'PASSWORD': "BB2710",
-        'HOST': "localhost",
+        'NAME': os.environ.get("DB_NAME", "travel_app"),
+        'USER': os.environ.get("DB_USER", "root"),
+        'PASSWORD': os.environ.get("DB_PASSWORD", "BB2710"),
+        'HOST': os.environ.get("DB_HOST", "localhost"),
     }
 }
 
