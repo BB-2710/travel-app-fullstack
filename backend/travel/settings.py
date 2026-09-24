@@ -94,6 +94,11 @@ DATABASES = {
     }
 }
 
+if os.environ.get("DB_HOST"):
+    DATABASES["default"]["OPTIONS"] = {
+        "ssl": {"ca": "/etc/ssl/certs/ca-certificates.crt"}
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
